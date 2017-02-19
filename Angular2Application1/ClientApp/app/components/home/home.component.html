@@ -1,0 +1,358 @@
+<div class="demo">
+    <button kendoButton (click)="onButtonClick()">Default</button>
+
+    <button kendoButton [primary]=true (click)="onButtonClick()">
+        My Kendo UI Button
+    </button>
+
+    <div class="example-col">
+        <p>Text only</p>
+        <kendo-buttongroup>
+            <button kendoButton [togglable]="true">
+                Bold
+            </button>
+            <button kendoButton [togglable]="true">
+                Italic
+            </button>
+            <button kendoButton [togglable]="true">
+                Underline
+            </button>
+        </kendo-buttongroup>
+    </div>
+
+    <div class="example-col">
+        <p>Icons only</p>
+        <kendo-buttongroup>
+            <button kendoButton [togglable]="true" [icon]="'bold'"></button>
+            <button kendoButton [togglable]="true" [icon]="'italic'"></button>
+            <button kendoButton [togglable]="true" [icon]="'underline'"></button>
+        </kendo-buttongroup>
+    </div>
+
+    <div class="example-col">
+        <p>Text + Icons</p>
+        <kendo-buttongroup>
+            <button kendoButton [togglable]="true" [icon]="'bold'">Bold</button>
+            <button kendoButton [togglable]="true" [icon]="'italic'">Italic</button>
+            <button kendoButton [togglable]="true" [icon]="'underline'">Underline</button>
+        </kendo-buttongroup>
+    </div>
+
+    <div class="example-wrapper">
+        <kendo-splitbutton (buttonClick)="onPaste()" [data]="data1" [icon]="paste">
+            Paste
+        </kendo-splitbutton>
+    </div>
+
+    <div class="example-wrapper">
+        <kendo-dropdownbutton [data]="data2">
+            User Settings
+        </kendo-dropdownbutton>
+    </div>
+</div>
+
+<div class="demo">
+    <!-- forms -->
+    <div class="form-group">
+
+        <kendo-calendar [value]="value1">
+        </kendo-calendar>
+
+        <!-- template driven forms-->
+        <div class="example-config">
+            Form value: {{ form.value | json }}
+        </div>
+
+        <form #form="ngForm">
+            <kendo-calendar name="date" [(ngModel)]="model.date" #date="ngModel" required></kendo-calendar>
+            <div [hidden]="date.valid" class="k-invalid">Date required. Please select one.</div>
+        </form>
+    </div>
+</div>
+
+<div class="demo">
+    <!-- dialog possible de faire un service -->
+    <div>
+        <div class="example-wrapper">
+            <button kendoButton *ngIf="!opened" (click)="open()">Open dialog</button>
+            <kendo-dialog title="Please confirm" *ngIf="opened" (close)="close('cancel')">
+                <p style="margin: 30px; text-align: center;">Are you sure you want to continue?</p>
+                <kendo-dialog-actions>
+                    <button kendoButton (click)="close('no')">No</button>
+                    <button kendoButton (click)="close('yes')" primary="true">Yes</button>
+                </kendo-dialog-actions>
+            </kendo-dialog>
+        </div>
+    </div>
+</div>
+
+<div class="demo">
+    <!-- drop downs -->
+    <div class="example-wrapper">
+        <div class="col-xs-12 col-sm-6 example-col">
+            <p>AutoComplete</p>
+            <kendo-autocomplete [data]="listItems" [placeholder]="'Your favorite sport'">
+            </kendo-autocomplete>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 example-col">
+            <p>ComboBox</p>
+            <kendo-combobox [data]="listItems" [value]="'Basketball'">
+            </kendo-combobox>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 example-col">
+            <p>DropDownList</p>
+            <kendo-dropdownlist [data]="listItems" [value]="'Basketball'">
+            </kendo-dropdownlist>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 example-col">
+            <p>MultiSelect</p>
+            <kendo-multiselect [data]="listItems" [value]="value" [placeholder]="'Your favorite sports'"></kendo-multiselect>
+        </div>
+    </div>
+</div>
+
+
+<div class="demo">
+    <!-- pop up-->
+    <div>
+        <div class="example-config">
+            <button #anchor (click)="onToggle()" class="k-button">{{toggleText}} Popup</button>
+        </div>
+        <div class="example-wrapper">
+            <kendo-popup [popupClass]="'content popup'" [anchor]="anchor" *ngIf="show">
+                <!-- User-defined content -->
+                Popup content.
+            </kendo-popup>
+        </div>
+    </div>
+</div>
+
+<div class="demo">
+    <!-- inputs -->
+
+    <div class="example-wrapper">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 example-col">
+                <p>MaskedTextBox</p>
+                <kendo-maskedtextbox [(ngModel)]="value3"
+                                     [mask]="mask"></kendo-maskedtextbox>
+            </div>
+            <div class="col-xs-12 col-sm-6 example-col">
+                <p>NumericTextBox</p>
+                <kendo-numerictextbox [(ngModel)]="numericValue"></kendo-numerictextbox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 example-col">
+                <p>Slider</p>
+                <kendo-slider [min]="min"
+                              [max]="max"
+                              [smallStep]="smallStep"
+                              [(ngModel)]="sliderValue"></kendo-slider>
+            </div>
+            <div class="col-xs-12 col-sm-6 example-col">
+                <p>Switch</p>
+                <kendo-switch [(ngModel)]="checked"></kendo-switch>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="demo">
+    <!-- LAYOUTS -->
+    <div class="example-wrapper container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 example-col">
+                <p>PanelBar</p>
+                <kendo-panelbar>
+                    <kendo-panelbar-item title="Invasion Games">
+                        <kendo-panelbar-item title="Hockey"></kendo-panelbar-item>
+                        <kendo-panelbar-item title="Soccer"></kendo-panelbar-item>
+                        <kendo-panelbar-item title="Rugby"></kendo-panelbar-item>
+                        <kendo-panelbar-item title="Basketball"></kendo-panelbar-item>
+                        <kendo-panelbar-item title="Water polo"></kendo-panelbar-item>
+                        <kendo-panelbar-item title="Netball"></kendo-panelbar-item>
+                    </kendo-panelbar-item>
+                    <kendo-panelbar-item title="Striking & Fielding Games">
+                        <kendo-panelbar-item title="Cricket"></kendo-panelbar-item>
+                        <kendo-panelbar-item title="Softball"></kendo-panelbar-item>
+                        <kendo-panelbar-item title="Baseball"></kendo-panelbar-item>
+                    </kendo-panelbar-item>
+                    <kendo-panelbar-item title="Net & Court Games" [expanded]="true">
+                        <kendo-panelbar-item title="Badminton"></kendo-panelbar-item>
+                        <kendo-panelbar-item title="Squash"></kendo-panelbar-item>
+                        <kendo-panelbar-item title="Tennis" [selected]="true"></kendo-panelbar-item>
+                        <kendo-panelbar-item title="Table Tennis"></kendo-panelbar-item>
+                        <kendo-panelbar-item title="Volleyball"></kendo-panelbar-item>
+                    </kendo-panelbar-item>
+                    <kendo-panelbar-item title="Target Games">
+                        <kendo-panelbar-item title="Golf"></kendo-panelbar-item>
+                        <kendo-panelbar-item title="Lawn bowls"></kendo-panelbar-item>
+                        <kendo-panelbar-item title="Tenpin bowling"></kendo-panelbar-item>
+                    </kendo-panelbar-item>
+                </kendo-panelbar>
+            </div>
+            </div>
+        </div>
+</div>
+<div class="demo">
+    <div class="panelbar-wrapper">
+        <kendo-panelbar>
+            <kendo-panelbar-item [title]="'My Teammates'" expanded="true">
+                <template kendoPanelBarContent>
+                    <div>
+                        <div class="teamMate">
+                            <img [src]="imageUrl2('andrew')" alt="Andrew Fuller">
+                            <h2>Andrew Fuller</h2>
+                            <p>Team Lead</p>
+                        </div>
+                        <div class="teamMate">
+                            <img [src]="imageUrl2('nancy')" alt="Nancy Leverling">
+                            <h2>Nancy Leverling</h2>
+                            <p>Sales Associate</p>
+                        </div>
+                        <div class="teamMate">
+                            <img [src]="imageUrl2('robert')" alt="Robert King">
+                            <h2>Robert King</h2>
+                            <p>Business System Analyst</p>
+                        </div>
+                    </div>
+                </template>
+            </kendo-panelbar-item>
+            <kendo-panelbar-item [title]="'Projects'">
+                <kendo-panelbar-item [title]="'New Business Plan'"></kendo-panelbar-item>
+                <kendo-panelbar-item [title]="'Sales Forecasts'">
+                    <kendo-panelbar-item [title]="'Q1 Forecast'"></kendo-panelbar-item>
+                    <kendo-panelbar-item [title]="'Q2 Forecast'"></kendo-panelbar-item>
+                    <kendo-panelbar-item [title]="'Q3 Forecast'"></kendo-panelbar-item>
+                    <kendo-panelbar-item [title]="'Q4 Forecast'"></kendo-panelbar-item>
+                </kendo-panelbar-item>
+                <kendo-panelbar-item [title]="'Sales Reports'"></kendo-panelbar-item>
+            </kendo-panelbar-item>
+            <kendo-panelbar-item [title]="'Programs'">
+                <kendo-panelbar-item [title]="'Monday'"></kendo-panelbar-item>
+                <kendo-panelbar-item [title]="'Tuesday'"></kendo-panelbar-item>
+                <kendo-panelbar-item [title]="'Wednesday'"></kendo-panelbar-item>
+                <kendo-panelbar-item [title]="'Thursday'"></kendo-panelbar-item>
+                <kendo-panelbar-item [title]="'Friday'"></kendo-panelbar-item>
+            </kendo-panelbar-item>
+            <kendo-panelbar-item [title]="'Communication'" [disabled]="true"></kendo-panelbar-item>
+        </kendo-panelbar>
+    </div>
+</div>
+    <div class="demo">
+            <div class="col-xs-12 col-sm-6 example-col">
+                <p>TabStrip</p>
+                <kendo-tabstrip>
+                    <kendo-tabstrip-tab [title]="'Baseball'" [selected]="true">
+                        <template kendoTabContent>
+                            <p>
+                                Baseball is a bat-and-ball game played between two teams of nine players each, who take turns batting and fielding.
+                            </p>
+                            <p>
+                                The batting team attempts to score runs by hitting a ball that is thrown by the pitcher with a bat swung by the batter, then running counter-clockwise around a series of four bases: first, second, third, and home plate. A run is scored when a player advances around the bases and returns to home plate.
+                            </p>
+                        </template>
+                    </kendo-tabstrip-tab>
+                    <kendo-tabstrip-tab [title]="'Basketball'">
+                        <template kendoTabContent>
+                            <p>
+                                Basketball is a sport that is played by two teams of five players on a rectangular court. The objective is to shoot a ball through a hoop 18 inches (46 cm) in diameter and mounted at a height of 10 feet (3.048 m) to backboards at each end of the court. The game was invented in 1891 by Dr. James Naismith, who would be the first basketball coach of the Kansas Jayhawks, one of the most successful programs in the game's history.
+                            </p>
+                        </template>
+                    </kendo-tabstrip-tab>
+                    <kendo-tabstrip-tab [title]="'Football'">
+                        <template kendoTabContent>
+                            <p>
+                                Football is a family of team sports that involve, to varying degrees, kicking a ball with the foot to score a goal. Unqualified, the word football is understood to refer to whichever form of football is the most popular in the regional context in which the word appears.
+                            </p>
+                        </template>
+                    </kendo-tabstrip-tab>
+                </kendo-tabstrip>
+            </div>
+        </div>
+
+<div class="demo">
+    <!-- upload -->
+    <kendo-upload [saveUrl]="uploadSaveUrl"
+                  [removeUrl]="uploadRemoveUrl">
+    </kendo-upload>
+</div>
+
+
+<div class="demo">
+    <!-- sortable -->
+    <div>
+        <h5>Team A: {{palettes.TeamA | json}}</h5>
+        <h5>Team B: {{palettes.TeamB | json}}</h5>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 team">
+                <p>Team A</p>
+                <kendo-sortable [data]="palettes.TeamA"
+                                [zone]="'twoWay'"
+                                [emptyText]="'Move employees from Team B to Team A.'"
+                                [itemClass]="'employee'"
+                                [emptyItemStyle]="{'min-height': '150px', width:'100%'}"
+                                [emptyItemClass]="'empty'"
+                                [activeItemClass]="'employee active'">
+                </kendo-sortable>
+            </div>
+            <div class="col-xs-12 col-sm-6 team team-b">
+                <p>Team B</p>
+                <kendo-sortable [data]="palettes.TeamB"
+                                [zone]="'twoWay'"
+                                [emptyText]="'Move employees from Team A to Team B.'"
+                                [itemClass]="'employee'"
+                                [emptyItemStyle]="{'min-height': '150px', width:'100%'}"
+                                [emptyItemClass]="'empty'"
+                                [activeItemClass]="'employee active'">
+                </kendo-sortable>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="demo">
+    <!-- charts -->
+    <kendo-chart [categoryAxis]="{ categories: categories }">
+        <kendo-chart-title text="Gross domestic product growth /GDP annual %/"></kendo-chart-title>
+        <kendo-chart-legend position="top" orientation="horizontal"></kendo-chart-legend>
+        <kendo-chart-tooltip format="{0}%"></kendo-chart-tooltip>
+        <kendo-chart-series>
+            <kendo-chart-series-item *ngFor="let item of series"
+                                     type="column" [data]="item.data" [name]="item.name">
+            </kendo-chart-series-item>
+        </kendo-chart-series>
+    </kendo-chart>
+</div>
+
+<div class="demo">
+    <!-- grid -->
+
+    <kendo-grid [data]="gridData" [height]="370">
+        <kendo-grid-column field="ProductID" title="ID" width="40">
+        </kendo-grid-column>
+        <kendo-grid-column field="ProductName" title="Name" width="250">
+        </kendo-grid-column>
+        <kendo-grid-column field="Category.CategoryName" title="Category">
+        </kendo-grid-column>
+        <kendo-grid-column field="UnitPrice" title="Price" width="80">
+        </kendo-grid-column>
+        <kendo-grid-column field="UnitsInStock" title="In stock" width="80">
+        </kendo-grid-column>
+        <kendo-grid-column field="Discontinued" title="Discontinued" width="120">
+            <template kendoGridCellTemplate let-dataItem>
+                <input type="checkbox" [checked]="dataItem.Discontinued" disabled />
+            </template>
+        </kendo-grid-column>
+    </kendo-grid>
+</div>
+
+<div>
+
+</div>
